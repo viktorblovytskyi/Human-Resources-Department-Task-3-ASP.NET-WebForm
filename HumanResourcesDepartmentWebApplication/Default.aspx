@@ -2,7 +2,7 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <br />
-    <div>
+    <div class="btn-group ">
         <asp:Button runat="server" CssClass="btn btn-success" Text="Add employee" OnClick="AddEmployee" />
         <asp:Button runat="server" CssClass="btn btn-warning" Text="Add employer" OnClick="AddEmployee" />
         <asp:Button runat="server" CssClass="btn btn-info" Text="Display Subdivisions" />       
