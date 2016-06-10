@@ -1655,6 +1655,7 @@ label {
   display: inline-block;
   margin-bottom: 5px;
   font-weight: bold;
+    width: 185px;
 }
 
 input[type="search"] {
