@@ -29,7 +29,15 @@ namespace HumanResourcesDepartmentWebApplication
             ArrayList positions = new ArrayList();           
             Response.Redirect("AddEmployeeForm");
         }
-        
+
+        protected void AddEmployer(object sender, EventArgs e)
+        {
+            HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
+            menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
+            ArrayList positions = new ArrayList();
+            Response.Redirect("AddEmployeeForm");
+        }
+
         protected string PrintTableHtml()
         {
             StringBuilder html = new StringBuilder();

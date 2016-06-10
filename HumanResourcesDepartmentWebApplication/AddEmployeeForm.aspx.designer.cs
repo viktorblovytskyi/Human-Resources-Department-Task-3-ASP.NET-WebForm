@@ -10,8 +10,7 @@
 namespace HumanResourcesDepartmentWebApplication {
     
     
-    public partial class AddChangeEmployeeForm
-    {
+    public partial class AddChangeEmployeeForm {
         
         /// <summary>
         /// add_employee_form control.
@@ -41,15 +40,6 @@ namespace HumanResourcesDepartmentWebApplication {
         protected global::System.Web.UI.WebControls.TextBox LastName;
         
         /// <summary>
-        /// Position control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList Position;
-        
-        /// <summary>
         /// ContactDetails control.
         /// </summary>
         /// <remarks>
@@ -57,6 +47,15 @@ namespace HumanResourcesDepartmentWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox ContactDetails;
+        
+        /// <summary>
+        /// Position control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList Position;
         
         /// <summary>
         /// Subdivision control.
@@ -75,5 +74,14 @@ namespace HumanResourcesDepartmentWebApplication {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList Employeer;
+        
+        /// <summary>
+        /// SubmitButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button SubmitButton;
     }
 }
