@@ -24,24 +24,13 @@ namespace HumanResourcesDepartmentWebApplication
 
         protected void AddEmployee(object sender, EventArgs e)
         {
+            HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
+            menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
             ArrayList positions = new ArrayList();           
             Response.Redirect("AddEmployeeForm");
         }
         
-
-        //protected void Button_click(object sender, EventArgs e)
-        //{
-        //    if (CompanyName.Text != null)
-        //    {
-        //        string companyName = CompanyName.Text;
-        //        Label1.Text = Server.MapPath(@"~\App_Data");
-        //        HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
-        //        this.company = menu.LoadObject(companyName, Server.MapPath(@"~\App_Data"));
-        //    }
-        //    //TryUpdateModel(this.company);
-        //}
-
-        protected string GetNoShowHtml()
+        protected string PrintTableHtml()
         {
             StringBuilder html = new StringBuilder();
             List<Employee> employees = this.company.Employees;

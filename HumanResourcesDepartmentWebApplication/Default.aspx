@@ -20,7 +20,7 @@
             </tr>
         </thead>
         <tbody>
-            <%= GetNoShowHtml()%>
+            <%= PrintTableHtml()%>
         </tbody>
     </table>
     </div>
