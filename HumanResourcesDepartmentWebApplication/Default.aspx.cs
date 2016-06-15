@@ -76,16 +76,16 @@ namespace HumanResourcesDepartmentWebApplication
         private string PrintEmployee(Employee empObj)
         {
             if (empObj.Employer != null && empObj.Subdivision != null)
-                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> <a href =\"EditEmployee?id={0}\">Edit</a> </td>",
+                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"EditEmployee?id={0}\">Edit</a>  <a href =\"DeleteEmployee?id={0}\">Delete</a></td>",
                     empObj.id, empObj.FirstName, empObj.LastName, empObj.Position, empObj.ContactDetails, empObj.Subdivision.Name, empObj.Employer.FirstName + " " + empObj.Employer.LastName, empObj.Employer.id);
             else if (empObj.Employer == null && empObj.Subdivision != null)
-                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> <a href =\"EditEmployee?id={0}\">Edit</a></td>",
+                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"EditEmployee?id={0}\">Edit</a>  <a href =\"DeleteEmployee?id={0}\">Delete</a></td>",
                     empObj.id, empObj.FirstName, empObj.LastName, empObj.Position, empObj.ContactDetails, empObj.Subdivision.Name,  " ", " ");
             else if (empObj.Subdivision == null && empObj.Employer != null)
-                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> <a href =\"EditEmployee?id={0}\">Edit</a></td>",
+                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"EditEmployee?id={0}\">Edit</a>  <a href =\"DeleteEmployee?id={0}\">Delete</a></td>",
                     empObj.id, empObj.FirstName, empObj.LastName, empObj.Position, empObj.ContactDetails, " ", empObj.Employer.FirstName + " " + empObj.Employer.LastName, empObj.Employer.id);
             else
-                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> <a href =\"EditEmployee?id={0}\">Edit</a></td>",
+                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"EditEmployee?id={0}\">Edit</a>  <a href =\"DeleteEmployee?id={0}\">Delete</a></td>",
                     empObj.id, empObj.FirstName, empObj.LastName, empObj.Position, empObj.ContactDetails, " ", " ", " ");
         }
 

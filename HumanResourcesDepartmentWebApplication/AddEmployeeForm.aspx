@@ -31,18 +31,18 @@
                 </tr>
                 <tr>
                     <td><asp:Label runat="server" CssClass="col-sm-2 control-label">Position</asp:Label></td>
-                    <td><asp:DropDownList runat="server" CssClass="form-control col-xs-4" ID="Position" OnSelectedIndexChanged="SelectPosition" ></asp:DropDownList></td>
+                    <td><asp:DropDownList runat="server" CssClass="form-control col-xs-4" ID="Position"  ></asp:DropDownList></td>
                 </tr>           
                 <tr>
                     <td><asp:Label runat="server" CssClass="col-sm-2 control-label">Subdivision</asp:Label></td>
-                    <td><asp:DropDownList runat="server" CssClass="form-control col-xs-4" ID="Subdivision" OnSelectedIndexChanged="SelectSubdivision" ></asp:DropDownList></td>
+                    <td><asp:DropDownList runat="server" CssClass="form-control col-xs-4" ID="Subdivision"  ></asp:DropDownList></td>
                 </tr>
                 <tr>
                     <td><asp:Label runat="server" CssClass="col-sm-2 control-label">Employer</asp:Label></td>
-                    <td><asp:DropDownList runat="server" CssClass="form-control col-xs-4" ID="Employeer" OnSelectedIndexChanged="SelectEmployerId" ></asp:DropDownList></td>
+                    <td><asp:DropDownList runat="server" CssClass="form-control col-xs-4" ID="Employeer"  ></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td></td><td><asp:Button runat="server" CssClass="btn btn-success btn-block" ID="SubmitButton" Text="Submit" OnClick="AddEmployee"/></td>
+                    <td><asp:Button runat="server" CssClass="btn btn-warning btn-block" ID="EditButton" Text="Submit" Visible="false" OnClick="AddEmployee"/></td><td><asp:Button runat="server" CssClass="btn btn-success btn-block" ID="SubmitButton" Text="Submit" Visible="false" OnClick="AddEmployee"/></td>
                 </tr>
             </tbody>
             

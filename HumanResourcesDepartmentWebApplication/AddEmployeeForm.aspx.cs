@@ -23,11 +23,12 @@ namespace HumanResourcesDepartmentWebApplication
                 HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
                 this.company = menu.LoadObject("Google", Server.MapPath(@"~\App_Data"));
                 ArrayList positions = new ArrayList();
+                positions.Add("Product owner");
                 positions.Add("Developer");
                 positions.Add("QA");
                 positions.Add("Project manager");
                 positions.Add("Business analyst");
-                positions.Add("Product owner");
+                
                 Position.DataSource = positions;
                 Position.DataBind();
                 Employeer.DataSource = this.ReturnEmployerList(this.company);
@@ -36,35 +37,37 @@ namespace HumanResourcesDepartmentWebApplication
                 Employeer.DataBind();
                 Subdivision.DataSource = this.ReturnSubdivisions(this.company);
                 Subdivision.DataBind();
+                SubmitButton.Visible = true;
             }
             else
             {
                 HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
                 this.company = menu.LoadObject("Google", Server.MapPath(@"~\App_Data"));
+                EditButton.Visible = true;
             }
         }
 
+        /// <summary>
+        /// This method adds employee.
+        /// </summary>
+        /// <param name="sender">object</param>
+        /// <param name="e">EventArgs</param>
         protected void AddEmployee(object sender, EventArgs e)
         {
+            this.SelectedPosition = Position.SelectedValue;
+            this.SelectedSubdivision = Subdivision.SelectedValue;
+            this.SelectedEmployerId = int.Parse(Employeer.SelectedValue);
             this.company.AddEmployee(FirstName.Text, LastName.Text, ContactDetails.Text, this.SelectedPosition, this.SelectedSubdivision, this.SelectedEmployerId);
             HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
             menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
+            Response.Redirect("Default");
         }
 
-        protected void SelectPosition(object sender, EventArgs e)
-        {
-            this.SelectedPosition = Position.SelectedValue;
-        }
-
-        protected void SelectSubdivision(object sender, EventArgs e)
-        {
-            this.SelectedSubdivision = Subdivision.SelectedValue;
-        }
-        protected void SelectEmployerId(object sender, EventArgs e)
-        {
-            this.SelectedEmployerId = int.Parse(Employeer.SelectedValue);
-        }
-
+        /// <summary>
+        /// This method returns SortedList of Employee.
+        /// </summary>
+        /// <param name="company">Company</param>
+        /// <returns>SortedList</returns>
         private SortedList ReturnEmployerList(Company company)
         {
             SortedList productOwnerSortList = new SortedList();
@@ -78,6 +81,11 @@ namespace HumanResourcesDepartmentWebApplication
             return productOwnerSortList;
         }
 
+        /// <summary>
+        /// This method returns ArrayList of Subdivisions.
+        /// </summary>
+        /// <param name="company">Company</param>
+        /// <returns>ArrayList</returns>
         private ArrayList ReturnSubdivisions(Company company)
         {
             ArrayList SubdivisionArrayList = new ArrayList();

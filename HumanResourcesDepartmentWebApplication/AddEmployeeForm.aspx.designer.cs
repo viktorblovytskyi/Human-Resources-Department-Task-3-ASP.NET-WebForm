@@ -76,6 +76,15 @@ namespace HumanResourcesDepartmentWebApplication {
         protected global::System.Web.UI.WebControls.DropDownList Employeer;
         
         /// <summary>
+        /// EditButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button EditButton;
+        
+        /// <summary>
         /// SubmitButton control.
         /// </summary>
         /// <remarks>
