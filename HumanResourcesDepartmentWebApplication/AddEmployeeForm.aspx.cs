@@ -37,13 +37,11 @@ namespace HumanResourcesDepartmentWebApplication
                 Employeer.DataBind();
                 Subdivision.DataSource = this.ReturnSubdivisions(this.company);
                 Subdivision.DataBind();
-                SubmitButton.Visible = true;
             }
             else
             {
                 HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
                 this.company = menu.LoadObject("Google", Server.MapPath(@"~\App_Data"));
-                EditButton.Visible = true;
             }
         }
 
@@ -56,8 +54,16 @@ namespace HumanResourcesDepartmentWebApplication
         {
             this.SelectedPosition = Position.SelectedValue;
             this.SelectedSubdivision = Subdivision.SelectedValue;
-            this.SelectedEmployerId = int.Parse(Employeer.SelectedValue);
-            this.company.AddEmployee(FirstName.Text, LastName.Text, ContactDetails.Text, this.SelectedPosition, this.SelectedSubdivision, this.SelectedEmployerId);
+            if (string.IsNullOrEmpty(Employeer.SelectedValue))
+            {
+                this.company.AddEmployee(FirstName.Text, LastName.Text, ContactDetails.Text, this.SelectedPosition, this.SelectedSubdivision);
+            }
+            else
+            {
+                this.SelectedEmployerId = int.Parse(Employeer.SelectedValue);
+                this.company.AddEmployee(FirstName.Text, LastName.Text, ContactDetails.Text, this.SelectedPosition, this.SelectedSubdivision, this.SelectedEmployerId);
+            }
+            
             HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
             menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
             Response.Redirect("Default");

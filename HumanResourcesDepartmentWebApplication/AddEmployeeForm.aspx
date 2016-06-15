@@ -8,8 +8,7 @@
     <webopt:bundlereference runat="server" path="~/Content/css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
-<body>
-
+<body>   
     <form id="add_employee_form" runat="server" defaultbutton="SubmitButton" defaultfocus="FirstName">
     <div>
         <table >
@@ -42,7 +41,7 @@
                     <td><asp:DropDownList runat="server" CssClass="form-control col-xs-4" ID="Employeer"  ></asp:DropDownList></td>
                 </tr>
                 <tr>
-                    <td><asp:Button runat="server" CssClass="btn btn-warning btn-block" ID="EditButton" Text="Submit" Visible="false" OnClick="AddEmployee"/></td><td><asp:Button runat="server" CssClass="btn btn-success btn-block" ID="SubmitButton" Text="Submit" Visible="false" OnClick="AddEmployee"/></td>
+                    <td> <a href="Default.aspx" class="btn btn-danger">Back</a></td><td><asp:Button runat="server" CssClass="btn btn-success btn-block" ID="SubmitButton" Text="Submit" OnClick="AddEmployee"/></td>
                 </tr>
             </tbody>
             
