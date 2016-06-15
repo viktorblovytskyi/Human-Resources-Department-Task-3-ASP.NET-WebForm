@@ -54,52 +54,6 @@ namespace HumanResourcesDepartmentWebApplication
         }
 
         /// <summary>
-        /// This method delete employee from company and save object.
-        /// </summary>
-        /// <param name="sender">object</param>
-        /// <param name="e">EventArgs</param>        
-        protected void DeleteEmployee(object sender, EventArgs e)
-        {
-            HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
-            menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
-            int id = int.Parse(EmployeeId.Text);
-            try
-            {
-                Employee emp = this.company.FindById(id);
-                this.company.RemoveEmloyee(emp);
-                ErrorMsg.Text = "Eployee has been removed.";
-                ErrorMsg.CssClass = "alert alert-success";
-                menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
-            }
-            catch (NullReferenceException exp)
-            {
-                ErrorMsg.CssClass = "alert alert-danger";
-                ErrorMsg.Text = "This employee does not exist! " + exp.Message;
-            }           
-        }
-        
-
-        protected void RemoveEmpl(object sender, EventArgs e)
-        {
-            HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
-            menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
-            int int_id = int.Parse(Request.QueryString["id"]);
-            try
-            {
-                Employee emp = this.company.FindById(int_id);
-                this.company.RemoveEmloyee(emp);
-                ErrorMsg.Text = "Eployee has been removed.";
-                ErrorMsg.CssClass = "alert alert-success";
-                menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
-            }
-            catch (NullReferenceException exp)
-            {
-                ErrorMsg.CssClass = "alert alert-danger";
-                ErrorMsg.Text = "This employee does not exist! " + exp.Message;
-            }
-        }
-
-        /// <summary>
         /// This method builds table with data.
         /// </summary>
         /// <returns>string</returns>
@@ -122,16 +76,16 @@ namespace HumanResourcesDepartmentWebApplication
         private string PrintEmployee(Employee empObj)
         {
             if (empObj.Employer != null && empObj.Subdivision != null)
-                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> </td>",
+                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> <a href =\"EditEmployee?id={0}\">Edit</a> </td>",
                     empObj.id, empObj.FirstName, empObj.LastName, empObj.Position, empObj.ContactDetails, empObj.Subdivision.Name, empObj.Employer.FirstName + " " + empObj.Employer.LastName, empObj.Employer.id);
             else if (empObj.Employer == null && empObj.Subdivision != null)
-                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> </td>",
+                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> <a href =\"EditEmployee?id={0}\">Edit</a></td>",
                     empObj.id, empObj.FirstName, empObj.LastName, empObj.Position, empObj.ContactDetails, empObj.Subdivision.Name,  " ", " ");
             else if (empObj.Subdivision == null && empObj.Employer != null)
-                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> </td>",
+                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> <a href =\"EditEmployee?id={0}\">Edit</a></td>",
                     empObj.id, empObj.FirstName, empObj.LastName, empObj.Position, empObj.ContactDetails, " ", empObj.Employer.FirstName + " " + empObj.Employer.LastName, empObj.Employer.id);
             else
-                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> </td>",
+                return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"DeleteEmployee?id={0}\">Delete</a> <a href =\"EditEmployee?id={0}\">Edit</a></td>",
                     empObj.id, empObj.FirstName, empObj.LastName, empObj.Position, empObj.ContactDetails, " ", " ", " ");
         }
 
