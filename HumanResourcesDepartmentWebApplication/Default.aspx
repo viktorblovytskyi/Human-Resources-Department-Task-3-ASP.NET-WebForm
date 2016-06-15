@@ -1,5 +1,7 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="HumanResourcesDepartmentWebApplication._Default" %>
 
+
+
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <div class="btn-group ">
@@ -12,8 +14,10 @@
         <table>
             <tbody>
                 <tr>
-                    <td><asp:TextBox runat="server" CssClass="form-control col-xs-1" ToolTip="Employee's id." ID="EmployeeId">ID</asp:TextBox></td>
-                    <td><asp:Button runat="server" CssClass="btn btn-danger" Text="Delete Employee" /></td>
+                    <td><asp:Label runat="server">ID: </asp:Label></td>
+                    <td><asp:TextBox runat="server" CssClass="form-control col-xs-1" ToolTip="Employee's id." ID="EmployeeId" ></asp:TextBox></td>
+                    <td><asp:Button runat="server" CssClass="btn btn-danger" Text="Delete Employee" ID="DeleteEmp" OnClick="DeleteEmployee" /></td>
+                    <td><asp:Label runat="server" ID="ErrorMsg"></asp:Label></td>
                 </tr>
             </tbody>
         </table>
@@ -32,6 +36,7 @@
                 <th>Subdivision</th>
                 <th>Employer</th>
                 <th>Employer's id</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>
