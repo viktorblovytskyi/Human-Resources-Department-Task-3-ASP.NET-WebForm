@@ -18,8 +18,10 @@ namespace HumanResourcesDepartmentWebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            
             if (!IsPostBack)
             {
+                Emp_id.Text = Request.QueryString["id"];
                 HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
                 this.company = menu.LoadObject("Google", Server.MapPath(@"~\App_Data"));
                 ArrayList positions = new ArrayList();
@@ -39,7 +41,7 @@ namespace HumanResourcesDepartmentWebApplication
                 Subdivision.DataBind();
             }
             else
-            {
+            {                
                 HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
                 this.company = menu.LoadObject("Google", Server.MapPath(@"~\App_Data"));
             }
@@ -54,7 +56,7 @@ namespace HumanResourcesDepartmentWebApplication
         {
             this.SelectedPosition = Position.SelectedValue;
             this.SelectedSubdivision = Subdivision.SelectedValue;
-            if (string.IsNullOrEmpty(Employeer.SelectedValue))
+            if (Employeer.SelectedValue == "None")
             {
                 this.company.AddEmployee(FirstName.Text, LastName.Text, ContactDetails.Text, this.SelectedPosition, this.SelectedSubdivision);
             }
@@ -80,6 +82,7 @@ namespace HumanResourcesDepartmentWebApplication
             var productOwners = from empl in company.Employees
                                 where empl.Position == "Product owner"
                                 select empl;
+            productOwnerSortList.Add(99, "None");
             foreach(var po in productOwners)
             {
                 productOwnerSortList.Add(po.id, po.FirstName + " " + po.LastName);
@@ -100,6 +103,15 @@ namespace HumanResourcesDepartmentWebApplication
                 SubdivisionArrayList.Add(sub.Name);
             }
             return SubdivisionArrayList;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        private void SetDataOnForm(int id)
+        {
+
         }
 
         

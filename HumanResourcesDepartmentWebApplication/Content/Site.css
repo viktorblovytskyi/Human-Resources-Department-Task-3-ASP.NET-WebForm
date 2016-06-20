@@ -21,3 +21,111 @@ body {
         padding: 0;
     }
 }
+
+.add-form {
+    padding: 10px;
+    margin: auto;
+}
+
+.form {
+    padding: 10px;
+}
+
+.btnOuter
+{
+    border-radius: 3px;
+    border: 1px solid #dcdddd;
+    height: 66px;
+    box-shadow: 0 0 2px #999;
+    clear: both;
+}
+ 
+.btnInner
+{
+    margin: 0;
+    padding: 0 0 0 16px;
+    height: 64px;
+    line-height: 64px;
+    border: 1px solid #fff;
+    background: url(images/confBtnBgr.gif) repeat-x 0 0;
+}
+ 
+*html .btnInner
+{
+    height: 45px;
+    padding-top: 18px;
+}
+ 
+.btnInner img
+{
+    vertical-align: middle;
+}
+ 
+.imgLabel
+{
+    color: #4a4a4a;
+    font-size: 16px;
+    padding: 0 0 0 15px;
+}
+ 
+.btnWrap
+{
+    width: 107px;
+    float: right;
+    text-align: center;
+}
+ 
+*html .btnWrap
+{
+    height: 46px;
+    line-height: 32px;
+    margin-top: -50px;
+    padding-top: 18px;
+}
+ 
+* + html .btnWrap
+{
+    margin-top: -64px;
+}
+ 
+/* overrides RFD style */
+.btnWrap a
+{
+    vertical-align: middle !important;
+}
+ 
+.btnGreen, .btnCeramic, .btnBlue
+{
+    background-image: url(images/confBtnBgr.gif);
+    background-repeat: repeat-x;
+}
+ 
+.btnGreen
+{
+    background-position: 0 -64px;
+}
+ 
+.btnCeramic
+{
+    background-position: 0 -128px;
+}
+ 
+.btnBlue
+{
+    background-position: 0 -194px;
+}
+ 
+.btnBottomSpace
+{
+    margin-bottom: 15px;
+}
+ 
+#description-section li
+{
+    padding: 5px;
+}
+ 
+html.RadForm_Black, 
+html.RadForm_BlackMetroTouch {
+    background-color: #fff;
+}

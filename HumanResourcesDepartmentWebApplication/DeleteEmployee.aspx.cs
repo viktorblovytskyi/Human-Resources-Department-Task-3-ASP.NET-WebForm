@@ -26,11 +26,11 @@ namespace HumanResourcesDepartmentWebApplication
                
                 menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
             }
-            catch (NullReferenceException exp)
+            catch (NullReferenceException)
             {
                 
             }
-            catch(ArgumentNullException exp)
+            catch(ArgumentNullException)
             {
 
             }

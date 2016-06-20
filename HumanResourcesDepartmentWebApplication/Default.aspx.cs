@@ -46,7 +46,36 @@ namespace HumanResourcesDepartmentWebApplication
             menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));          
             Response.Redirect("AddEmployeeForm");
         }
+
+        /// <summary>
+        /// This method delete subdivision.
+        /// </summary>
+        /// <param name="sender">object</param>
+        /// <param name="e">EventArgs</param>
+        protected void DeleteSubdivision(object sender, EventArgs e)
+        {
+            string nameOfSubdivision = SubdivisionDropList.SelectedValue;
+            if (nameOfSubdivision != "All")
+                this.company.RemoveSubdivision(nameOfSubdivision);
+            else
+                subdivision = company.FindSubdivisionByName(nameOfSubdivision);
+            HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
+            menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
+            Response.Redirect(Request.RawUrl);
+        }
         
+        /// <summary>
+        /// This method adds new subdivision.
+        /// </summary>
+        /// <param name="sender">object</param>
+        /// <param name="e">EventArgs</param>
+        protected void AddSubdivision(object sender, EventArgs e)
+        {
+            company.AddSubdivision(NameOfSubdivision.Text);
+            HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
+            menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
+            Response.Redirect(Request.RawUrl);
+        }
 
         /// <summary>
         /// This method builds table with data.
@@ -78,6 +107,7 @@ namespace HumanResourcesDepartmentWebApplication
         /// <returns>string</returns>
         private string PrintEmployee(Employee empObj)
         {
+            //<a href="#modal-dialog" class="modal-toggle" data-toggle="modal" data-href="http://localhost.testing/modal-processing.php" data-modal-type="confirm" data-modal-title="Delete Property" data-modal-text="Are you sure you want to delete {$property.address_string}?" data-modal-confirm-url="{$base_url}residential-lettings/properties/do-delete/property/{$property.id}"><i class="icon-trash"></i> Modal Submit</a>
             if (empObj.Employer != null && empObj.Subdivision != null)
                 return String.Format("<tr><td>{0}</td><td>{1}</td><td>{2}</td><td>{3}</td><td>{4}</td><td>{5}</td><td>{6}</td><td>{7}</td><td><a href =\"AddEmployeeForm?id={0}\">Edit</a>  <a href =\"DeleteEmployee?id={0}\">Delete</a></td>",
                     empObj.id, empObj.FirstName, empObj.LastName, empObj.Position, empObj.ContactDetails, empObj.Subdivision.Name, empObj.Employer.FirstName + " " + empObj.Employer.LastName, empObj.Employer.id);
@@ -100,11 +130,13 @@ namespace HumanResourcesDepartmentWebApplication
         private ArrayList ReturnSubdivisions(Company company)
         {
             ArrayList SubdivisionArrayList = new ArrayList();
+
             SubdivisionArrayList.Add("All");
             foreach (var sub in company.Subdivisions)
             {
                 SubdivisionArrayList.Add(sub.Name);
             }
+
             return SubdivisionArrayList;
         }
 
@@ -116,6 +148,7 @@ namespace HumanResourcesDepartmentWebApplication
         protected void SelectSubdivision(object sender, EventArgs e)
         {
             string nameOfSubdivision = SubdivisionDropList.SelectedValue;
+
             if (nameOfSubdivision == "All")
                 this.subdivision = null;
             else
