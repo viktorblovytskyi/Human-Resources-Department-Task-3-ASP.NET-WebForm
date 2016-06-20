@@ -16,11 +16,12 @@
             </tr>
             <tr>
                 <td colspan="4">
-                    <asp:TextBox runat="server" CssClass="form-control" ToolTip="Name of subdivison" ID="NameOfSubdivision">Name of Subdivision</asp:TextBox>
-                    <asp:Button runat="server" CssClass="btn btn-success" Text="Add subdivision" OnClick="AddSubdivision" />
-                    <asp:RequiredFieldValidator runat="server" ErrorMessage="You must enter name of subdivision!<br>" ControlToValidate="NameOfSubdivision"></asp:RequiredFieldValidator>
-                    
+                    <span>
+                        <asp:TextBox runat="server" CssClass="form-control" ToolTip="Name of subdivison" ID="NameOfSubdivision">Name of Subdivision</asp:TextBox>
+                        <asp:Button runat="server" CssClass="btn btn-success" Text="Add subdivision" OnClick="AddSubdivision" />
+                    </span>
                 </td>
+                <asp:RequiredFieldValidator runat="server" ErrorMessage="You must enter name of subdivision!<br>" ControlToValidate="NameOfSubdivision"></asp:RequiredFieldValidator>
             </tr>
         </tbody>
     </table>  

@@ -15,10 +15,10 @@ namespace HumanResourcesDepartmentWebApplication
         private string SelectedPosition;
         private string SelectedSubdivision;
         private int SelectedEmployerId;
+        private int id;
 
         protected void Page_Load(object sender, EventArgs e)
-        {
-            int id;   
+        {  
             if (!IsPostBack)
             {                              
                 
@@ -41,8 +41,9 @@ namespace HumanResourcesDepartmentWebApplication
                 Subdivision.DataBind();
                 if (!string.IsNullOrEmpty(Request.QueryString["id"]))
                 {
-                    id = int.Parse(Request.QueryString["id"]);
+                    this.id = int.Parse(Request.QueryString["id"]);
                     this.SetDataOnForm(id);
+                    this.ChangeButtons();
                 }
             }
             else
@@ -71,6 +72,31 @@ namespace HumanResourcesDepartmentWebApplication
                 this.company.AddEmployee(FirstName.Text, LastName.Text, ContactDetails.Text, this.SelectedPosition, this.SelectedSubdivision, this.SelectedEmployerId);
             }
             
+            HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
+            menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
+            Response.Redirect("Default");
+        }
+
+        /// <summary>
+        /// This method change employee's information. 
+        /// </summary>
+        /// <param name="sender">object</param>
+        /// <param name="e">EventArgs</param>
+        protected void ChangeEmployee(object sender, EventArgs e)
+        {
+            this.SelectedPosition = Position.SelectedValue;
+            this.SelectedSubdivision = Subdivision.SelectedValue;
+            Employee emp = this.company.FindById(int.Parse(Emp_id.Text));
+            if (Employeer.SelectedValue == "None")
+            {
+                emp.ChangeAllData(FirstName.Text, LastName.Text, ContactDetails.Text, this.SelectedPosition, this.company.FindSubdivisionByName(this.SelectedSubdivision), null);
+            }
+            else
+            {
+                this.SelectedEmployerId = int.Parse(Employeer.SelectedValue);
+                emp.ChangeAllData(FirstName.Text, LastName.Text, ContactDetails.Text, this.SelectedPosition, this.company.FindSubdivisionByName(this.SelectedSubdivision), this.company.FindById(SelectedEmployerId));
+            }
+
             HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
             menu.SaveObject(this.company, Server.MapPath(@"~\App_Data"));
             Response.Redirect("Default");
@@ -116,6 +142,7 @@ namespace HumanResourcesDepartmentWebApplication
         /// <param name="id">int</param>
         private void SetDataOnForm(int id)
         {
+            Emp_id.Text = id.ToString();
             Employee emp = company.FindById(id);
             FirstName.Text = emp.FirstName;
             LastName.Text = emp.LastName;
@@ -123,6 +150,15 @@ namespace HumanResourcesDepartmentWebApplication
             Position.SelectedValue = emp.Position;
             if(emp.Subdivision != null)
                 Subdivision.SelectedValue = emp.Subdivision.Name;
+        }
+
+        /// <summary>
+        /// This method change property visible.
+        /// </summary>
+        private void ChangeButtons()
+        {
+            SubmitButton.Visible = !SubmitButton.Visible;
+            ChangeButton.Visible = !ChangeButton.Visible;
         }
 
         
