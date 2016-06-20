@@ -18,10 +18,10 @@ namespace HumanResourcesDepartmentWebApplication
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            
+            int id;   
             if (!IsPostBack)
-            {
-                Emp_id.Text = Request.QueryString["id"];
+            {                              
+                
                 HumanResourcesDepartment.Menu menu = new HumanResourcesDepartment.Menu();
                 this.company = menu.LoadObject("Google", Server.MapPath(@"~\App_Data"));
                 ArrayList positions = new ArrayList();
@@ -39,6 +39,11 @@ namespace HumanResourcesDepartmentWebApplication
                 Employeer.DataBind();
                 Subdivision.DataSource = this.ReturnSubdivisions(this.company);
                 Subdivision.DataBind();
+                if (!string.IsNullOrEmpty(Request.QueryString["id"]))
+                {
+                    id = int.Parse(Request.QueryString["id"]);
+                    this.SetDataOnForm(id);
+                }
             }
             else
             {                
@@ -106,12 +111,18 @@ namespace HumanResourcesDepartmentWebApplication
         }
 
         /// <summary>
-        /// 
+        /// This method loads data on form.
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="id">int</param>
         private void SetDataOnForm(int id)
         {
-
+            Employee emp = company.FindById(id);
+            FirstName.Text = emp.FirstName;
+            LastName.Text = emp.LastName;
+            ContactDetails.Text = emp.ContactDetails;
+            Position.SelectedValue = emp.Position;
+            if(emp.Subdivision != null)
+                Subdivision.SelectedValue = emp.Subdivision.Name;
         }
 
         
